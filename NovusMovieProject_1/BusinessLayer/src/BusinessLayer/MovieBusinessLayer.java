@@ -6,16 +6,20 @@ import DataLayer.MovieData;
 import java.util.List;
 
 
-
+// Implement the business logic on the app
 public class MovieBusinessLayer {
     String message;
     
      
     public Films getFilms(){
+        // Pulls the films from the CSV file
        Films films = new MovieData().getFilmData(AppVariables.CSV.EXTENDED_FILE_PATH);
         return films;
     }
     
+    
+    
+    // Lots of delegation methods
     
     public List<SimplisticFilm> getDistinctSimplisticFilmsFromFilms(Films films){
         return (films == null) ? null : films.toListSimplisticFilm();
@@ -59,6 +63,7 @@ public class MovieBusinessLayer {
     
     
     public Film getFilmFromSimplisticFilm(String filmID){
+        // Find the first film that equals filmID
         return this.getFilms()
                         .stream()
                         .filter(f -> f.getFilmID().equals(filmID))
@@ -66,6 +71,7 @@ public class MovieBusinessLayer {
     }
     
     public Director getDirectorFromSimplisticFilm(Film sFilm, String directorID){
+        // Find the first film in sFilm that equals directorID
         return sFilm.getDirectorList()
                         .stream()
                         .filter(d -> d.getID().equals(directorID))
@@ -73,6 +79,7 @@ public class MovieBusinessLayer {
     }
     
     public Actor getActorFromSimplisticFilm(Film sFilm, String actorID){
+        // Find the first film in sFilm that equals actorID
         return sFilm.getActorList()
                         .stream()
                         .filter(a -> a.getID().equals(actorID))
