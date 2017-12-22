@@ -1,6 +1,6 @@
 package ClassLayer;
 
-
+// For a Person for example an actor or a director
 public class Person {
     public String personID, personName;
     

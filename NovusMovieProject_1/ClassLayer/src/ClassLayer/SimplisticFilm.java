@@ -1,6 +1,6 @@
 package ClassLayer;
 
-
+// Film with only an ID and a name
 public class SimplisticFilm{
     public String filmID, filmName;
     
@@ -12,9 +12,11 @@ public class SimplisticFilm{
     
     
     public boolean isValid(){
+        // Needs to have an ID
         if(this.filmID == null || this.filmID.isEmpty()){
             return false;
         }else if(this.filmName == null || this.filmName.isEmpty()){
+            // Needs to have a name
             return false;
         }else{
             return true;

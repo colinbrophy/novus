@@ -3,6 +3,7 @@ package ClassLayer;
 import java.util.ArrayList;
 import java.util.List;
 
+// Film with added directors, actors, year and IMDB rating
 public class Film extends SimplisticFilm {
     public String imdbRating, filmYear;
     public List<Director> directors;
@@ -35,7 +36,7 @@ public class Film extends SimplisticFilm {
         return (SimplisticFilm)this;
     }*/
     
-    
+    // Getters and Setters
     public String getFilmRating(){return imdbRating;}
     public String getFilmYear(){return filmYear;}
     public List<Director> getDirectorList(){return directors;}
