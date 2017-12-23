@@ -15,14 +15,13 @@ public abstract class BaseBean {
     protected <T>List populateDropDownList(List<T> dataSource){
         List<SelectItem> siList = new ArrayList();
          
-        
-        if(dataSource.size() > 1){
+       if(dataSource.size() > 1){
             //No selection option = <--SELECT--> 
             SelectItem noSelect = new SelectItem(null, AppVariables.WebProperties.dropDownDefault);
             noSelect.setNoSelectionOption(true);
             siList.add(noSelect);
-        }
-        
+       }
+
         // If the first entry is a SimplisticFilm
         if(dataSource != null && dataSource.get(0) instanceof SimplisticFilm){
             List<SimplisticFilm> tmpList = (List<SimplisticFilm>)dataSource;

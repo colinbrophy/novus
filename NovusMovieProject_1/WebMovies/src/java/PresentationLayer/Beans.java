@@ -87,7 +87,7 @@ public class Beans extends BaseBean implements Serializable{
             isAllSelected = true;
             // Put the first film in the list in
             this.populateFields(sFilms.get(0).filmID, directors.get(0).personID, actors.get(0).personID);
-            populateDropDownsWithOriginalData();
+            //populateDropDownsWithOriginalData();
         }
     }
     
