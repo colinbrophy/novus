@@ -11,6 +11,7 @@ public class Films extends ArrayList<Film>{
     public Films() { }
 
     public Films(List<Film> films){
+        // Add films to list
         this.addAll(films);
     }
     
@@ -125,7 +126,9 @@ public class Films extends ArrayList<Film>{
     
     public List<String> getDistinctYear(String year){
         List <String> tmpList = new ArrayList();
-        
+                 
+        // Adds all years to tmpList which are not already in the list and
+        // finds and filters all the directors with year equal to year
         this.stream()
                 .filter(f -> tmpList.stream().noneMatch(y -> y.equals(f.filmYear) && f.filmYear.equals(year)))
                 .map(f -> tmpList.add(f.filmYear))
@@ -139,12 +142,14 @@ public class Films extends ArrayList<Film>{
     
     public List<String> toListDistinctFilmRatings(){
         List <String> tmpList = new ArrayList();
-
+        
+        // Adds all ratings to tmpList which are not already in the list
          this.stream()
                  .filter(f -> tmpList.stream().noneMatch(y -> y.equals(f.imdbRating)))
                  .map(f -> tmpList.add(f.imdbRating))
                  .collect(Collectors.toList());
 
+         // Sort by rating
          Collections.sort(tmpList);
 
          return tmpList;
@@ -153,11 +158,14 @@ public class Films extends ArrayList<Film>{
     public List<String> getDistinctFilmRating(String imdbRating){
         List <String> tmpList = new ArrayList();
         
+        // Adds all ratings to tmpList which are not already in the list and
+        // finds and filters all the directors with rating equal to imdbRating
         this.stream()
                 .filter(f -> tmpList.stream().noneMatch(y -> y.equals(f.imdbRating) && f.imdbRating.equals(imdbRating)))
                 .map(f -> tmpList.add(f.imdbRating))
                 .collect(Collectors.toList());
         
+        // Sort ratings by rating
         Collections.sort(tmpList);
                 
         return tmpList;

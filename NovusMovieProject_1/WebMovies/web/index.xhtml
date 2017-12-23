@@ -8,13 +8,29 @@
     </h:head>
     <h:body>
         <h:outputStylesheet name="style.css"  />
+        <!-- Header of the page-->
         <h1>Movie DB</h1>
         <h:form id="form">
                 
-                
+                <!-- Film dropdown -->
                 <p>Film:<h:selectOneMenu style="width:230px;" value="#{bean.selectedFilm}" 
                               onchange="submit()" valueChangeListener="#{bean.filmValueChanged}">
                     <f:selectItems value="#{bean.films}" />
+                </h:selectOneMenu>   
+                 <!-- Director dropdown -->
+                Director:<h:selectOneMenu style="width:230px;" value="#{bean.selectedDirector}" 
+                              onchange="submit()" valueChangeListener="#{bean.directorValueChanged}">
+                    <f:selectItems value="#{bean.directors}" />
+                </h:selectOneMenu>
+                <!-- Actor dropdown -->
+                Actor:<h:selectOneMenu style="width:230px;" value="#{bean.selectedActor}" 
+                              onchange="submit()" valueChangeListener="#{bean.actorValueChanged}">
+                    <f:selectItems value="#{bean.actors}" />
+                </h:selectOneMenu>               
+                <!-- Actor dropdown -->
+                Year:<h:selectOneMenu style="width:230px;" value="#{bean.selectedYear}" 
+                              onchange="submit()" valueChangeListener="#{bean.yearValueChanged}">
+                    <f:selectItems value="#{bean.filmYears}" />
                 </h:selectOneMenu>
                 
                 <h:commandButton value="Reset" class="button" action="#{bean.reset}" />
@@ -28,6 +44,7 @@
             <f:facet name="header">Selected Film</f:facet>
             <h:column>
               <f:facet name="header">Film ID</f:facet>
+              
               #{bean.film.filmID}
             </h:column>
             <h:column>
