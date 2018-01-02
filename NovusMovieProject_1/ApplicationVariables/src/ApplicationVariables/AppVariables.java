@@ -24,7 +24,7 @@ public class AppVariables {
         public static String imdbFilmURL = "http://www.imdb.com/title/tt%s";
         public static String imdbProfileURL = "http://www.imdb.com/name/nm%s";
         
-        // Stores the the displayed string for the inital dropdown option
+        // Stores the displayed string for the inital dropdown option
         public static final String dropDownDefault = "--SELECT--";
         
         // Years in which the film are from, currently not in use

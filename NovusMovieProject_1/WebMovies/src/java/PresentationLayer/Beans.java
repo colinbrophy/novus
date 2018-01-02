@@ -6,6 +6,7 @@ import ClassLayer.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -64,6 +65,7 @@ public class Beans extends BaseBean implements Serializable{
             filmYears = mbl.getDistinctYearsFromFilms(films);
             filmRatings = mbl.getDistinctRatingsFromFilms(films);
         }catch(Exception e){
+            // Print stack trace to help find the error
            e.printStackTrace();
         }
     }
@@ -86,6 +88,7 @@ public class Beans extends BaseBean implements Serializable{
         if(sFilms.size() == 1 && directors.size() == 1 && actors.size() == 1 && filmYears.size() == 1){
             isAllSelected = true;
             // Put the first film in the list in
+            List<String> filmsIDs = sFilms.stream().map(x -> x.filmID).collect(Collectors.toList());
             this.populateFields(sFilms.get(0).filmID, directors.get(0).personID, actors.get(0).personID);
             //populateDropDownsWithOriginalData();
         }
@@ -145,7 +148,7 @@ public class Beans extends BaseBean implements Serializable{
     
     
     
-    //check if status of page is postback
+    //check if status of page is postback or is it an initial request
     public static boolean isPostback() {
        return FacesContext.getCurrentInstance().isPostback();
     }
@@ -167,6 +170,7 @@ public class Beans extends BaseBean implements Serializable{
     public void setIsAllSelected(Boolean isAllSelected){this.isAllSelected = isAllSelected;}
     
     
+    private List<Film> films;
     //-------------------------------------------------
     //   Populating strings with selected film data
     //-------------------------------------------------
@@ -177,7 +181,7 @@ public class Beans extends BaseBean implements Serializable{
     public void populateFields(String filmID, String directorID, String actorID){
         this.film = mbl.getFilmFromSimplisticFilm(filmID);
         this.director = mbl.getDirectorFromSimplisticFilm(film, directorID);
-        this.actor = mbl.getActorFromSimplisticFilm(film, actorID);
+        this.actor = mbl.getActorFromSimplisticFilm(film, actorID); 
     }
     
     //JSF read access to fields
