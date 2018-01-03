@@ -177,19 +177,26 @@ public class Beans extends BaseBean implements Serializable{
     private Film film;
     private Director director;
     private Actor actor;
+    private String FilmImdbLink;
+    private String DirectorImdbLink;
+    private String ActorImdbLink;
+    
     // Put the fields in the webpage for JSF
     public void populateFields(String filmID, String directorID, String actorID){
         this.film = mbl.getFilmFromSimplisticFilm(filmID);
         this.director = mbl.getDirectorFromSimplisticFilm(film, directorID);
         this.actor = mbl.getActorFromSimplisticFilm(film, actorID); 
-    }
+        this.FilmImdbLink = String.format(AppVariables.WebProperties.imdbFilmURL, film.filmID);
+        this.DirectorImdbLink = String.format(AppVariables.WebProperties.imdbProfileURL,  director.personID);
+        this.ActorImdbLink = String.format(AppVariables.WebProperties.imdbProfileURL, actor.personID);
+        }
     
     //JSF read access to fields
     // JSF will call these functions
     public Film getFilm(){return film;}
     public Director getDirector(){return director;}
     public Actor getActor(){return actor;}
-    public String getFilmImdbLink() {return String.format(AppVariables.WebProperties.imdbFilmURL, film.filmID);}
-    public String getDirectorImdbLink() {return String.format(AppVariables.WebProperties.imdbProfileURL, director.personID);}
-    public String getActorImdbLink() {return String.format(AppVariables.WebProperties.imdbProfileURL, actor.personID);}
+    public String getFilmImdbLink() {return FilmImdbLink;}
+    public String getDirectorImdbLink() {return DirectorImdbLink;}
+    public String getActorImdbLink() {return ActorImdbLink;}
 }
