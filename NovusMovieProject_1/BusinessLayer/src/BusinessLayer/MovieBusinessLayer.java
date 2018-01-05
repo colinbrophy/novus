@@ -72,7 +72,7 @@ public class MovieBusinessLayer {
     
     public Director getDirectorFromSimplisticFilm(Film sFilm, String directorID){
         // Find the first film in sFilm that equals directorID
-        return sFilm.getDirectorList()
+        return sFilm.getDirectors()
                         .stream()
                         .filter(d -> d.getID().equals(directorID))
                         .findFirst().get();
@@ -80,7 +80,7 @@ public class MovieBusinessLayer {
     
     public Actor getActorFromSimplisticFilm(Film sFilm, String actorID){
         // Find the first film in sFilm that equals actorID
-        return sFilm.getActorList()
+        return sFilm.getActors()
                         .stream()
                         .filter(a -> a.getID().equals(actorID))
                         .findFirst().get();

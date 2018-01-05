@@ -13,10 +13,22 @@ public class AppVariables {
     public static int actorID = 5;
     public static int actorName = 6;
         
-    public static class CSV{    
+    public static class CSV{
+        private static String OS = System.getProperty("os.name").toLowerCase();
         // Paths to the data of the movies
-        public static String FILE_PATH = "/home/colin/code/novus/NovusMovieProject_1/Data/TestData.csv";
-        public static String EXTENDED_FILE_PATH = "/home/colin/code/novus/NovusMovieProject_1/Data/ExtendedTestData.csv";
+        // Path depends on the os
+        static {
+            if (OS.indexOf("win") >= 0) {
+                FILE_PATH = "C:\\Users\\colinbrophy\\Documents\\novus-master\\NovusMovieProject_1\\Data\\TestData.csv";
+                EXTENDED_FILE_PATH = "C:\\Users\\colinbrophy\\Documents\\novus-master\\NovusMovieProject_1\\Data\\ExtendedTestData.csv";
+            }
+            else {
+                 FILE_PATH = "/home/colin/code/novus/NovusMovieProject_1/Data/TestData.csv";
+                 EXTENDED_FILE_PATH = "/home/colin/code/novus/NovusMovieProject_1/Data/ExtendedTestData.csv";
+            }
+        }
+        public static String FILE_PATH; 
+        public static String EXTENDED_FILE_PATH;;
     } 
       
     public static class WebProperties{

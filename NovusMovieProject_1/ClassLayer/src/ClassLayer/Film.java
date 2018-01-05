@@ -2,6 +2,8 @@ package ClassLayer;
 
 import java.util.ArrayList;
 import java.util.List;
+import ApplicationVariables.AppVariables;
+
 
 // Film with added directors, actors, year and IMDB rating
 public class Film extends SimplisticFilm {
@@ -39,8 +41,13 @@ public class Film extends SimplisticFilm {
     // Getters and Setters
     public String getFilmRating(){return imdbRating;}
     public String getFilmYear(){return filmYear;}
-    public List<Director> getDirectorList(){return directors;}
-    public List<Actor> getActorList(){return actors;}
+    public List<Director> getDirectors(){return directors;}
+    public List<Actor> getActors(){return actors;}
+   
+    public Director getDirector() { return directors.get(0);}
+ //   public Actor getActor() { return actors.get(0); }
+   // public String getDirectorImdbLink() {return String.format(AppVariables.WebProperties.imdbProfileURL,  getDirector().personID);}
+ //   public String getActorImdbLink() { return String.format(AppVariables.WebProperties.imdbProfileURL, getActor().personID);}
     
     
     public void setFilmRatig(String imdbRating){this.imdbRating = imdbRating;}

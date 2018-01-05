@@ -1,6 +1,5 @@
 package PresentationLayer;
 
-import ApplicationVariables.AppVariables;
 import BusinessLayer.MovieBusinessLayer;
 import ClassLayer.*;
 import java.io.IOException;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @ViewScoped
 // Defines the name which can be used in the JavaSever faces XHTML
 @Named("bean")
-public class Beans extends BaseBean implements Serializable{
+public class Beans extends BaseBean implements Serializable {
    
     private MovieBusinessLayer mbl = new MovieBusinessLayer();
     // Strings representing the currently selected entry
@@ -48,9 +47,13 @@ public class Beans extends BaseBean implements Serializable{
             
             // Filter the options based on the current selection
             populateDropDownsWithFilteredData(filmID, directorID, actorID, filmYear, filmRating);
+            
+            //TODO Display the table here 
+            populateTable(filmID, directorID, actorID, filmYear);
         }else{
             // By default put all the distinct names as options
             populateDropDownsWithOriginalData();
+            populateTable(null, null, null, null);
         }
     }
     
@@ -89,7 +92,7 @@ public class Beans extends BaseBean implements Serializable{
             isAllSelected = true;
             // Put the first film in the list in
             List<String> filmsIDs = sFilms.stream().map(x -> x.filmID).collect(Collectors.toList());
-            this.populateFields(sFilms.get(0).filmID, directors.get(0).personID, actors.get(0).personID);
+            //this.populateFields(sFilms.get(0).filmID, directors.get(0).personID, actors.get(0).personID);
             //populateDropDownsWithOriginalData();
         }
     }
@@ -169,8 +172,7 @@ public class Beans extends BaseBean implements Serializable{
     public boolean getIsAllSelected(){return this.isAllSelected;}
     public void setIsAllSelected(Boolean isAllSelected){this.isAllSelected = isAllSelected;}
     
-    
-    private List<Film> films;
+/*    
     //-------------------------------------------------
     //   Populating strings with selected film data
     //-------------------------------------------------
@@ -199,4 +201,13 @@ public class Beans extends BaseBean implements Serializable{
     public String getFilmImdbLink() {return FilmImdbLink;}
     public String getDirectorImdbLink() {return DirectorImdbLink;}
     public String getActorImdbLink() {return ActorImdbLink;}
+*/    
+    private Films tableFilms;
+    public Films getTableFilms() { return tableFilms; }
+    
+    public void populateTable(String filmID, String directorID, String actorID, String filmYear) {
+        Films allFilms = mbl.getFilms();
+        tableFilms = mbl.getFilmsSubset(filmID, directorID, actorID, filmYear, null, allFilms);
+        
+    }
 }
